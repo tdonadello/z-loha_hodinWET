@@ -1,0 +1,58 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+<body>
+    <input id="input" type="text">
+    <button id="button">známkuju</button>
+    <h2 id="subheading">Známka</h2>
+    <div id="bakalare"></div>
+    <h2 id="subheading2">Průměr</h2>
+    <div id="averagemark"></div>
+    
+    <script>
+        const inputField = document.querySelector("#input")
+        const button = document.querySelector("#button")
+        const subheading = document.getElementById("subheading")
+        const bakalare = document.querySelector("#bakalare")
+        const subheading2 = document.getElementById("subheading2")
+        const averagemark = document.querySelector("#averagemark")
+        const markOptions = [1, 2, 3, 4, 5]
+        const markOptions2 = [1, 1, 2, 3, 4]
+        let sum = 0
+
+        button.addEventListener("click", oznamkujZaka)
+
+        function oznamkujZaka() {
+            const favStudent = inputField.value.trim().toLowerCase();
+
+            
+            if (favStudent === "") {
+                bakalare.textContent = "";
+                return;
+            }
+            
+            inputField.value = "";
+            
+            let bakalareIndex
+            
+            if (favStudent === "dony") {
+                bakalareIndex = markOptions2[Math.floor(Math.random() * markOptions2.length)]
+            } else {
+                bakalareIndex = markOptions[Math.floor(Math.random() * markOptions.length)]
+            }
+            
+            for(let mark of markOptions) {
+                sum += mark;
+            }
+            const average = sum / markOptions.length
+            
+            bakalare.textContent = bakalareIndex;
+        }
+    </script>
+</body>
+</html>
