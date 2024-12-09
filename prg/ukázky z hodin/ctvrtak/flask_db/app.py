@@ -40,6 +40,16 @@ def form():
         input_class = request.form.get("class")
         message = request.form.get("message")
         grade = random.randint(1, 5)
+        if len(input_class) > 3:
+            input_class = " "
+            print("error")
+        else:
+            input_class = request.form.get("class")
+
+        if " " in name:
+            name = name.title()
+        else:
+            name = "error"
 
         cursor = get_db().cursor()
         cursor.execute(
@@ -49,6 +59,7 @@ def form():
 
         get_db().commit()
 
+    
         #if name and message and input_class:
         #    return redirect(url_for("result", name=name, form_class=input_class, message=message))
     
@@ -60,6 +71,7 @@ def result():
     cursor.execute("SELECT * FROM students")
     rows = cursor.fetchall()
     return render_template("result_all.html", rows=rows)
+
 
 @app.route("/result2")
 def result2():
